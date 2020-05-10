@@ -3,42 +3,44 @@
 <head>
 	<meta charset="utf-8">
 	<script>
-		// TODO: create a handler
-    window.addEventListener("load", function(){
-        function setSearchEngine() {
+		
+		function setSearchEngine() {
 			
-			console.log();
+			let button = document.getElementById("myButton");
+			button.addEventListener("click", function() {
+				let selectedEngine = document.querySelector('input[name="engine"]:checked');
+				
+				let engineObject = {
+					"google": "https://www.google.com/search",
+					"duckduckgo": "https://duckduckgo.com/",
+					"bing": "https://www.bing.com/search",
+					"ask": "https://www.ask.com/web"
+				}
+				let engineKey = selectedEngine.value;
+				let engineValue = engineObject[engineKey];
+				let formTag = document.querySelector("form");
+				formTag.setAttribute("action", engineValue);
+				
+			}, false);	
+			
 		}
-		document.getElementById
-    });
+
+		window.addEventListener("load", function(){
+			setSearchEngine();
+		}, false);
+	
 	</script>
 </head>
 
 <body>
 
-	<form id="searchForm">
+	<form action="" method="GET">
 		<input type="text" name="q"/>
 		<label><input type="radio" name="engine" value="google"/>Google</label>
 		<label><input type="radio" name="engine" value="duckduckgo"/>DuckDuckGo</label>
 		<label><input type="radio" name="engine" value="bing"/>Bing</label>
 		<label><input type="radio" name="engine" value="ask"/>Ask</label>
-		<button>Go!</button>
+		<button id="myButton">Go!</button>
 	</form>
-
-	<!-- 
-	Label		Value		Search URL
-	Google		google		https://www.google.com/search
-	DuckDuckGo	duckDuckGo	https://duckduckgo.com/
-	Bing		bing		https://www.bing.com/search
-	Ask			ask			https://www.ask.com/web
-
-	
-	
-	
-
-
-
-
-
 
 </body>
